@@ -24,7 +24,6 @@ In progress...
 
 - React.js
 - Material UI
-- Ajax
 - Visual Studio Code
 
 ## Includes
