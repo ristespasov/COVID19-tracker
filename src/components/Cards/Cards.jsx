@@ -19,6 +19,13 @@ const useStyles = makeStyles((theme) => ({
         }
     },
     cardRecovered: {
+        borderBottom: "10px solid #52BE80",
+        margin: "0 10px",
+        "@media screen and (max-width: 959px)": {
+            margin: "0 10px 10px 10px"
+        }
+    },
+    cardActive: {
         borderBottom: "10px solid #2980B9",
         margin: "0 10px",
         "@media screen and (max-width: 959px)": {
@@ -36,13 +43,15 @@ const useStyles = makeStyles((theme) => ({
 
 const Cards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
     const classes = useStyles();
+    // const activeCases = parseInt(confirmed.value) - (parseInt(recovered.value) + parseInt(deaths.value));
+    // console.log(activeCases);
 
     if (!confirmed) {
         return <Loading />;
     }
     return (
         <Grid container justify="center">
-            <Grid item component={Card} xs={12} md={3} className={classes.cardInfected}>
+            <Grid item component={Card} xs={12} sm={5} md={2} className={classes.cardInfected}>
                 <CardContent >
                     <Typography color="textSecondary" gutterBottom>Infected</Typography>
                     <Typography variant="h5">
@@ -57,7 +66,7 @@ const Cards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
                     <Typography variant="body2">Number of total cases of Covid-19</Typography>
                 </CardContent>
             </Grid>
-            <Grid item component={Card} xs={12} md={3} className={classes.cardRecovered}>
+            <Grid item component={Card} xs={12} sm={5} md={2} className={classes.cardRecovered}>
                 <CardContent >
                     <Typography color="textSecondary" gutterBottom>Recovered</Typography>
                     <Typography variant="h5">
@@ -72,7 +81,22 @@ const Cards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
                     <Typography variant="body2">Number of recovered cases from Covid-19</Typography>
                 </CardContent>
             </Grid>
-            <Grid item component={Card} xs={12} md={3} className={classes.cardDeaths}>
+            <Grid item component={Card} xs={12} sm={5} md={2} className={classes.cardActive}>
+                <CardContent >
+                    <Typography color="textSecondary" gutterBottom>Active</Typography>
+                    <Typography variant="h5">
+                        <CountUp
+                            start={0}
+                            end={confirmed.value - (recovered.value + deaths.value)}
+                            duration={2}
+                            separator=","
+                        />
+                    </Typography>
+                    <Typography color="textSecondary">{new Date(lastUpdate).toDateString()}</Typography>
+                    <Typography variant="body2">Number of active cases of Covid-19</Typography>
+                </CardContent>
+            </Grid>
+            <Grid item component={Card} xs={12} sm={5} md={2} className={classes.cardDeaths}>
                 <CardContent >
                     <Typography color="textSecondary" gutterBottom>Deaths</Typography>
                     <Typography variant="h5">
