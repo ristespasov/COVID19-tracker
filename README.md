@@ -20,7 +20,8 @@ The data is presented with numbers, charts, and a map.
 - Tablet&nbsp;  
 ![](git-images/5.PNG)
 
-- Mobile&nbsp;
+- Mobile
+&nbsp;
 ![](git-images/6.PNG)
 ![](git-images/7.PNG)
 
