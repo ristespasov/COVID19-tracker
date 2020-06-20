@@ -1,4 +1,4 @@
-# Weather & Air check
+# COVID-19 tracker
 
 ## About 
 
