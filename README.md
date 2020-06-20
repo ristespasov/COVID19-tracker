@@ -17,7 +17,7 @@ The data is presented with numbers, charts, and a map.
 - About&nbsp;
 ![](git-images/4.PNG)
 
-- Tablet&nbsp;
+- Tablet&nbsp;  
 ![](git-images/5.PNG)
 
 - Mobile&nbsp;
