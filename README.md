@@ -14,7 +14,7 @@ The data is presented with numbers, charts, and a map.
 - Map
 ![](git-images/3.PNG) 
 
--About
+- About
 ![](git-images/4.PNG)
 
 ## Deployment
