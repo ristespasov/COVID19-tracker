@@ -2,7 +2,7 @@
 
 ## About 
 
-A responsive, React.js web application A web app that provides data of total infected, recovered, active, and death cases from Coronavirus globally and by country. 
+A responsive, React.js web application that provides data of total infected, recovered, active, and death cases from Coronavirus globally and by country. 
 The data is presented with numbers, charts, and a map.
 
 ## Views
@@ -14,7 +14,7 @@ The data is presented with numbers, charts, and a map.
 - Map
 ![](git-images/3.PNG) 
 
--About
+- About
 ![](git-images/4.PNG)
 
 ## Deployment
