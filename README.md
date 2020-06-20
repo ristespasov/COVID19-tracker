@@ -7,20 +7,20 @@ The data is presented with numbers, charts, and a map.
 
 ## Views
 
-- Status
+- Status&nbsp;
 ![](git-images/1.PNG)
 ![](git-images/2.PNG)
 
-- Map
+- Map&nbsp;
 ![](git-images/3.PNG) 
 
-- About
+- About&nbsp;
 ![](git-images/4.PNG)
 
-- Tablet
+- Tablet&nbsp;
 ![](git-images/5.PNG)
 
-- Mobile
+- Mobile&nbsp;
 ![](git-images/6.PNG)
 ![](git-images/7.PNG)
 
