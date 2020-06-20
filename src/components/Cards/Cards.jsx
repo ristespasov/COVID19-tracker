@@ -12,7 +12,7 @@ import { Card, CardContent, Typography, Grid } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
     cardInfected: {
-        borderBottom: "10px solid #A93226",
+        borderBottom: "10px solid #ff416c",
         margin: "0 10px",
         "@media screen and (max-width: 959px)": {
             margin: "0 10px 10px 10px"
@@ -43,8 +43,6 @@ const useStyles = makeStyles((theme) => ({
 
 const Cards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
     const classes = useStyles();
-    // const activeCases = parseInt(confirmed.value) - (parseInt(recovered.value) + parseInt(deaths.value));
-    // console.log(activeCases);
 
     if (!confirmed) {
         return <Loading />;

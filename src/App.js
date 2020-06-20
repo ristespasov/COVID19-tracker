@@ -7,6 +7,7 @@ import Covid from '../src/components/Covid/Covid';
 import Cards from '../src/components/Cards/Cards';
 import Input from '../src/components/Input/Input';
 import Chart from '../src/components/Chart/Chart';
+import Map from '../src/components/Map/Map';
 import About from '../src/components/About/About';
 
 // ROUTER
@@ -49,6 +50,7 @@ class App extends Component {
             }
             exact
           />
+          <Route path="/Map" component={Map} />
           <Route path="/About" component={About} />
         </Switch>
       </BrowserRouter>

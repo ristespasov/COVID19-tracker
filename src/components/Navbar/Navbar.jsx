@@ -14,6 +14,8 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import LocalHospitalSharpIcon from '@material-ui/icons/LocalHospitalSharp';
+import RoomSharpIcon from '@material-ui/icons/RoomSharp';
+import MapSharpIcon from '@material-ui/icons/MapSharp';
 import InfoSharpIcon from '@material-ui/icons/InfoSharp';
 
 const drawerWidth = 240;
@@ -152,10 +154,13 @@ const Navbar = () => {
                 <Divider />
                 <Typography variant="button">
                     <NavLink to="/" exact className={classes.menuLink} activeClassName={classes.activeMenuLink}>
-                        <LocalHospitalSharpIcon /> Status</NavLink>
+                        <LocalHospitalSharpIcon />Status</NavLink>
+                    <Divider />
+                    <NavLink to="/Map" className={classes.menuLink} activeClassName={classes.activeMenuLink}>
+                        <MapSharpIcon />Map</NavLink>
                     <Divider />
                     <NavLink to="/About" className={classes.menuLink} activeClassName={classes.activeMenuLink}>
-                        <InfoSharpIcon /> About</NavLink>
+                        <InfoSharpIcon />About</NavLink>
                 </Typography>
                 <Divider />
             </Drawer>
