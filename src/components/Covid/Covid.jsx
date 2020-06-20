@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     image: {
         width: 300,
         '@media screen and (max-width: 599px)': {
-            width: 290,
+            width: 250,
         }
     }
 }));
