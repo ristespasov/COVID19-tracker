@@ -132,8 +132,9 @@ const Navbar = () => {
                         edge="end"
                         onClick={handleDrawerOpen}
                         className={clsx(open && classes.hide)}
+                        style={{ padding: 6, marginRight: 0 }}
                     >
-                        <MenuIcon />
+                        <MenuIcon style={{ fontSize: 40 }} />
                     </IconButton>
                 </Toolbar>
             </AppBar>
