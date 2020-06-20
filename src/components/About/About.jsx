@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
     },
     text: {
         marginBottom: 50,
-        padding: '0 10px'
+        padding: '0 25px'
     }
 }));
 
