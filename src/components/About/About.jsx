@@ -1,7 +1,7 @@
 import React from 'react';
 
 // COMPONENTS
-import Covid from '../Covid/Covid';
+import Cover from '../Cover/Cover';
 
 // MATERIAL UI
 import { makeStyles } from '@material-ui/core/styles';
@@ -24,7 +24,7 @@ const About = () => {
 
     return (
         <Grid container className={classes.root}>
-            <Covid />
+            <Cover />
             <Grid item xs={12} md={6} className={classes.text}>
                 <Typography variant="subtitle2" gutterBottom>Coronavirus disease 2019 (COVID-19) is an infectious disease caused by severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2). It was first identified in December 2019 in Wuhan, China, and has resulted in an ongoing pandemic. The first confirmed case has been traced back to 17 November 2019.</Typography>
                 <Typography variant="subtitle2" gutterBottom>Common symptoms include fever, cough, fatigue, shortness of breath, and loss of smell and taste. While the majority of cases result in mild symptoms, some progress to acute respiratory distress syndrome (ARDS) possibly precipitated by cytokine storm,[14] multi-organ failure, septic shock, and blood clots. The time from exposure to onset of symptoms is typically around five days, but may range from two to fourteen days.</Typography>

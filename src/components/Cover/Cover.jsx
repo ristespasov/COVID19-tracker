@@ -9,11 +9,9 @@ import image from '../../assets/image.png';
 
 const useStyles = makeStyles((theme) => ({
     imageContainer: {
-        display: "flex",
-        alignItems: "center",
-        margin: "50px auto",
+        margin: "114px 0 50px 0",
         '@media screen and (max-width: 599px)': {
-            margin: "25px auto",
+            margin: "85px 0 23px 0",
         }
     },
     image: {
@@ -24,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const Covid = () => {
+const Cover = () => {
     const classes = useStyles();
 
     return (
@@ -34,4 +32,4 @@ const Covid = () => {
     );
 }
 
-export default Covid;
+export default Cover;
