@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Grid } from '@material-ui/core';
 
 // ASSETS
-import image from '../../assets/image.png';
+import image from '../../assets/cover.png';
 
 const useStyles = makeStyles((theme) => ({
     imageContainer: {
