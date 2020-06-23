@@ -10,6 +10,8 @@ import Logo from '../../assets/logo.png';
 // // MATERIAL UI
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { CssBaseline, AppBar, Toolbar, Drawer, Divider, IconButton, Typography } from '@material-ui/core';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
@@ -111,60 +113,81 @@ const Navbar = () => {
     };
 
     return (
-        <div>
-            <CssBaseline />
-            <AppBar
-                position="fixed"
-                className={clsx(classes.appBar, {
-                    [classes.appBarShift]: open,
-                })}
-            >
-                <Toolbar className={classes.toolbar}>
-                    <NavLink to="/" exact>
-                        <IconButton className={classes.logoButton} edge="start" color="inherit" aria-label="menu">
-                            <img className={classes.logoImg} src={Logo} alt="logo" />
+        <ClickAwayListener onClickAway={handleDrawerClose}>
+            <div>
+                <CssBaseline />
+                <AppBar
+                    position="fixed"
+                    className={clsx(classes.appBar, {
+                        [classes.appBarShift]: open,
+                    })}
+                >
+                    <Toolbar className={classes.toolbar}>
+                        <NavLink to="/" exact>
+                            <IconButton className={classes.logoButton} edge="start" color="inherit" aria-label="menu">
+                                <img className={classes.logoImg} src={Logo} alt="logo" />
+                            </IconButton>
+                        </NavLink>
+                        <IconButton
+                            color="inherit"
+                            aria-label="open drawer"
+                            edge="end"
+                            className={clsx(open && classes.hide)}
+                            style={{ padding: 6, marginRight: 0 }}
+                            onClick={handleDrawerOpen}
+                        >
+                            <MenuIcon style={{ fontSize: 40 }} />
                         </IconButton>
-                    </NavLink>
-                    <IconButton
-                        color="inherit"
-                        aria-label="open drawer"
-                        edge="end"
-                        onClick={handleDrawerOpen}
-                        className={clsx(open && classes.hide)}
-                        style={{ padding: 6, marginRight: 0 }}
-                    >
-                        <MenuIcon style={{ fontSize: 40 }} />
-                    </IconButton>
-                </Toolbar>
-            </AppBar>
-            <Drawer
-                className={classes.drawer}
-                variant="persistent"
-                anchor="right"
-                open={open}
-                classes={{
-                    paper: classes.drawerPaper,
-                }}
-            >
-                <div className={classes.drawerHeader}>
-                    <IconButton onClick={handleDrawerClose}>
-                        {theme.direction === 'rtl' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-                    </IconButton>
-                </div>
-                <Divider />
-                <Typography variant="button">
-                    <NavLink to="/" exact className={classes.menuLink} activeClassName={classes.activeMenuLink}>
-                        <LocalHospitalSharpIcon />Status</NavLink>
+                    </Toolbar>
+                </AppBar>
+                <Drawer
+                    className={classes.drawer}
+                    variant="persistent"
+                    anchor="right"
+                    open={open}
+                    classes={{
+                        paper: classes.drawerPaper,
+                    }}
+                >
+                    <div className={classes.drawerHeader}>
+                        <IconButton onClick={handleDrawerClose}>
+                            {theme.direction === 'rtl' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+                        </IconButton>
+                    </div>
                     <Divider />
-                    <NavLink to="/Map" className={classes.menuLink} activeClassName={classes.activeMenuLink}>
-                        <MapSharpIcon />Map</NavLink>
+                    <Typography variant="button">
+                        <NavLink
+                            to="/"
+                            exact
+                            className={classes.menuLink}
+                            activeClassName={classes.activeMenuLink}
+                            onClick={handleDrawerClose}
+                        >
+                            <LocalHospitalSharpIcon />Status
+                            </NavLink>
+                        <Divider />
+                        <NavLink
+                            to="/Map"
+                            className={classes.menuLink}
+                            activeClassName={classes.activeMenuLink}
+                            onClick={handleDrawerClose}
+                        >
+                            <MapSharpIcon />Map
+                            </NavLink>
+                        <Divider />
+                        <NavLink
+                            to="/About"
+                            className={classes.menuLink}
+                            activeClassName={classes.activeMenuLink}
+                            onClick={handleDrawerClose}
+                        >
+                            <InfoSharpIcon />About
+                            </NavLink>
+                    </Typography>
                     <Divider />
-                    <NavLink to="/About" className={classes.menuLink} activeClassName={classes.activeMenuLink}>
-                        <InfoSharpIcon />About</NavLink>
-                </Typography>
-                <Divider />
-            </Drawer>
-        </div>
+                </Drawer>
+            </div>
+        </ClickAwayListener>
     );
 }
 
