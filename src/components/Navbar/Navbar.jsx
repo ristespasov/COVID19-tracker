@@ -64,9 +64,11 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         alignItems: 'center',
         padding: theme.spacing(0, 1),
-        // necessary for content to be below app bar
-        ...theme.mixins.toolbar,
         justifyContent: 'flex-start',
+        height: 64,
+        '@media screen and (max-width: 599px)': {
+            height: 62
+        }
     },
     menuLink: {
         padding: "20px",
