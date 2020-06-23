@@ -25,7 +25,7 @@ The data is presented with numbers, charts, and a map.
 ![](git-images/7.PNG)
 
 ## Deployment
-In progress...
+Firebase: https://covid-19-tracker-3cf98.web.app/
 
 ## Technologies & Tools
 
