@@ -7,21 +7,21 @@ A responsive web app that provides data of total infected, recovered, active, an
 ## Views
 
 - Status<br/>
-![](git-images/1.PNG)
-![](git-images/2.PNG)
+![](git-images/1.PNG?)
+![](git-images/2.PNG?)
 
 - Map<br/>
-![](git-images/3.PNG) 
+![](git-images/3.PNG?) 
 
 - About<br/>
-![](git-images/4.PNG)
+![](git-images/4.PNG?)
 
 - Tablet<br/> 
-![](git-images/5.PNG)
+![](git-images/5.PNG?)
 
 - Mobile<br/>
-![](git-images/6.PNG)
-![](git-images/7.PNG)
+![](git-images/6.PNG?)
+![](git-images/7.PNG?)
 
 ## Deployment
 Netlify: https://covid-19-tracker-2020project.netlify.app/
