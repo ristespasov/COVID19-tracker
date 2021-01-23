@@ -1,22 +1,23 @@
 import axios from 'axios';
 
-const url = 'https://covid19.mathdro.id/api';
+const url = 'https://disease.sh/v3/covid-19';
 
 export const fetchData = async (country) => {
-    let changableUrl = url;
+    let changableUrl = `${url}/all`;
 
     if (country) {
         changableUrl = `${url}/countries/${country}`
     }
 
     try {
-        const { data: { confirmed, recovered, deaths, lastUpdate } } = await axios.get(changableUrl);
+        const { data: { cases, recovered, active, deaths, updated } } = await axios.get(changableUrl);
 
         const response = {
-            confirmed,
+            cases,
             recovered,
+            active,
             deaths,
-            lastUpdate
+            updated
         }
         return response;
     } catch (error) {
@@ -24,20 +25,21 @@ export const fetchData = async (country) => {
     }
 }
 
-export const fetchDailyData = async () => {
+export const fetchCountriesData = async () => {
     try {
-        const { data } = await axios.get(`${url}/daily`);
-        return data.map(({ confirmed, deaths, reportDate: date }) => ({ confirmed: confirmed.total, deaths: deaths.total, date }));
+        const { data } = await axios.get(`${url}/countries`);
+        return data;
     } catch (error) {
         console.log(error);
     }
 };
 
-export const fetchCountries = async () => {
+export const fetchGlobalHistoricalData = async () => {
     try {
-        const { data: { countries } } = await axios.get(`${url}/countries`);
-        return countries.map((country) => country.name);
+        const { data } = await axios.get(`${url}/historical/all`);
+        return data;
     } catch (error) {
         console.log(error);
     }
-};
+}
+

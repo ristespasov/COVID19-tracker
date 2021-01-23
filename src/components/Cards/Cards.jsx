@@ -11,103 +11,104 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Card, CardContent, Typography, Grid } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
-    cardInfected: {
-        borderBottom: "10px solid #ff416c",
+    cardTotal: {
+        backgroundImage: 'linear-gradient(to bottom right, #890000, #ff8989)',
+        color: 'white',
         margin: "0 10px",
-        "@media screen and (max-width: 959px)": {
+        "@media screen and (max-width: 1280px)": {
             margin: "0 10px 10px 10px"
         }
     },
     cardRecovered: {
-        borderBottom: "10px solid #52BE80",
+        backgroundImage: 'linear-gradient(to bottom right, #008944, #75ffba)',
+        color: 'white',
         margin: "0 10px",
-        "@media screen and (max-width: 959px)": {
+        "@media screen and (max-width: 1280px)": {
             margin: "0 10px 10px 10px"
         }
     },
     cardActive: {
-        borderBottom: "10px solid #2980B9",
+        backgroundImage: 'linear-gradient(to bottom right, #007878, #78ffff)',
+        color: 'white',
         margin: "0 10px",
-        "@media screen and (max-width: 959px)": {
+        "@media screen and (max-width: 1280px)": {
             margin: "0 10px 10px 10px"
         }
     },
     cardDeaths: {
-        borderBottom: "10px solid #7F8C8D",
+        backgroundImage: 'linear-gradient(to bottom right, #3b3b3b, #bbbbbb)',
+        color: 'white',
         margin: "0 10px",
-        "@media screen and (max-width: 959px)": {
+        "@media screen and (max-width: 1280px)": {
             margin: "0 10px 10px 10px"
         }
     },
 }));
 
-const Cards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
+const Cards = ({ data: { cases, recovered, active, deaths, updated } }) => {
     const classes = useStyles();
+    const date = new Date(updated).toDateString();
 
-    if (!confirmed) {
+    if (!cases) {
         return <Loading />;
     }
     return (
         <Grid container justify="center">
-            <Grid item component={Card} xs={12} sm={5} md={2} className={classes.cardInfected}>
+            <Grid item component={Card} xs={12} sm={5} md={4} lg={2} className={classes.cardTotal}>
                 <CardContent >
-                    <Typography color="textSecondary" gutterBottom>Infected</Typography>
-                    <Typography variant="h5">
+                    <Typography align="center" gutterBottom>Total</Typography>
+                    <Typography align="center" variant="h4">
                         <CountUp
                             start={0}
-                            end={confirmed.value}
+                            end={cases}
                             duration={2}
                             separator=","
                         />
                     </Typography>
-                    <Typography color="textSecondary">{new Date(lastUpdate).toDateString()}</Typography>
-                    <Typography variant="body2">Number of total cases of Covid-19</Typography>
                 </CardContent>
+                <Typography align="right" variant="caption" display="block" style={{ paddingRight: 7 }}>{date}</Typography>
             </Grid>
-            <Grid item component={Card} xs={12} sm={5} md={2} className={classes.cardRecovered}>
+            <Grid item component={Card} xs={12} sm={5} md={4} lg={2} className={classes.cardRecovered}>
                 <CardContent >
-                    <Typography color="textSecondary" gutterBottom>Recovered</Typography>
-                    <Typography variant="h5">
+                    <Typography align="center" gutterBottom>Recovered</Typography>
+                    <Typography align="center" variant="h4">
                         <CountUp
                             start={0}
-                            end={recovered.value}
+                            end={recovered}
                             duration={2}
                             separator=","
                         />
                     </Typography>
-                    <Typography color="textSecondary">{new Date(lastUpdate).toDateString()}</Typography>
-                    <Typography variant="body2">Number of recovered cases from Covid-19</Typography>
                 </CardContent>
+                <Typography align="right" variant="caption" display="block" style={{ paddingRight: 7 }}>{date}</Typography>
             </Grid>
-            <Grid item component={Card} xs={12} sm={5} md={2} className={classes.cardActive}>
+            <Grid item component={Card} xs={12} sm={5} md={4} lg={2} className={classes.cardActive}>
                 <CardContent >
-                    <Typography color="textSecondary" gutterBottom>Active</Typography>
-                    <Typography variant="h5">
+                    <Typography align="center" gutterBottom>Active</Typography>
+                    <Typography align="center" variant="h4">
                         <CountUp
                             start={0}
-                            end={confirmed.value - (recovered.value + deaths.value)}
+                            end={active}
                             duration={2}
                             separator=","
                         />
                     </Typography>
-                    <Typography color="textSecondary">{new Date(lastUpdate).toDateString()}</Typography>
-                    <Typography variant="body2">Number of active cases of Covid-19</Typography>
                 </CardContent>
+                <Typography align="right" variant="caption" display="block" style={{ paddingRight: 7 }}>{date}</Typography>
             </Grid>
-            <Grid item component={Card} xs={12} sm={5} md={2} className={classes.cardDeaths}>
+            <Grid item component={Card} xs={12} sm={5} md={4} lg={2} className={classes.cardDeaths}>
                 <CardContent >
-                    <Typography color="textSecondary" gutterBottom>Deaths</Typography>
-                    <Typography variant="h5">
+                    <Typography align="center" gutterBottom>Deaths</Typography>
+                    <Typography align="center" variant="h4">
                         <CountUp
                             start={0}
-                            end={deaths.value}
+                            end={deaths}
                             duration={2}
                             separator=","
                         />
                     </Typography>
-                    <Typography color="textSecondary">{new Date(lastUpdate).toDateString()}</Typography>
-                    <Typography variant="body2">Number of deaths caused by Covid-19</Typography>
                 </CardContent>
+                <Typography align="right" variant="caption" display="block" style={{ paddingRight: 7 }}>{date}</Typography>
             </Grid>
         </Grid>
     )

@@ -23,7 +23,7 @@ const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
     toolbar: {
-        background: "#36d4c1",
+        background: "#00b3b3",
         display: "flex",
         justifyContent: "space-between"
     },
@@ -83,7 +83,7 @@ const useStyles = makeStyles((theme) => ({
         },
         '&:focus, &:hover': {
             color: "white",
-            background: "#36d4c1",
+            background: "#00b3b3",
             '& .MuiSvgIcon-root': {
                 color: "white"
             }
@@ -94,7 +94,7 @@ const useStyles = makeStyles((theme) => ({
     },
     activeMenuLink: {
         color: "white",
-        background: "#36d4c1",
+        background: "#00b3b3",
         '& .MuiSvgIcon-root': {
             color: "white"
         }

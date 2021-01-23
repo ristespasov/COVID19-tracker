@@ -5,12 +5,12 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Grid } from '@material-ui/core';
 
 // DATA
-import { fetchDailyData } from '../../api';
+import { fetchGlobalHistoricalData } from '../../api';
 
 // CHART
 import { Line, Bar } from 'react-chartjs-2';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
     root: {
         width: "80%",
         height: 350,
@@ -23,58 +23,119 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Chart = ({ data: { confirmed, recovered, deaths }, country }) => {
+const Chart = ({ data: { cases, recovered, active, deaths }, country }) => {
     const classes = useStyles();
-    const [dailyData, setDailyData] = useState([]);
+    const [dailyData, setDailyData] = useState('');
 
     useEffect(() => {
         const fetchAPI = async () => {
-            setDailyData(await fetchDailyData());
+            setDailyData(await fetchGlobalHistoricalData());
         }
-
         fetchAPI();
+
     }, []);
 
+    const historyCases = dailyData.cases;
+    const historyRecovered = dailyData.recovered;
+    const historyDeaths = dailyData.deaths;
+
+    const optionsLineChart = {
+        maintainAspectRatio: false,
+        scales: {
+            xAxes: [
+                {
+                    type: "time",
+                    time: {
+                        format: "MM/DD/YY",
+                        tooltipFormat: "ll",
+                    },
+                },
+            ],
+            yAxes: [{
+                ticks: {
+                    callback(value) {
+                        return Number(value).toLocaleString('en')
+                    }
+                }
+            }]
+        },
+        tooltips: {
+            displayColors: false,
+            callbacks: {
+                label: (tooltipItem, data) => {
+                    var tooltipValue = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+                    return parseInt(tooltipValue).toLocaleString();
+                }
+            }
+        }
+    }
+
+    const optionsBarChart = {
+        maintainAspectRatio: false,
+        legend: { display: false },
+        title: { display: true, text: `Current state in ${country}` },
+        scales: {
+            yAxes: [{
+                ticks: {
+                    callback(value) {
+                        return Number(value).toLocaleString('en')
+                    }
+                }
+            }]
+        },
+        tooltips: {
+            callbacks: {
+                label: function (tooltipItem, data) {
+                    var tooltipValue = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+                    return parseInt(tooltipValue).toLocaleString();
+                }
+            }
+        }
+    }
+
     const lineChart = (
-        dailyData.length
-            ? (<Line
-                options={{ maintainAspectRatio: false }}
-                data={{
-                    labels: dailyData.map(({ date }) => date),
-                    datasets: [
-                        {
-                            data: dailyData.map(({ confirmed }) => confirmed),
-                            label: 'Infected',
-                            borderColor: '#ff416c',
-                            backgroundColor: 'rgb(255, 65, 108, 0.5)',
-                            fill: true
-                        },
-                        {
-                            data: dailyData.map(({ deaths }) => deaths),
-                            label: 'Deaths',
-                            borderColor: '#7F8C8D',
-                            backgroundColor: 'rgb(127, 140, 141, 0.5)',
-                            fill: true
-                        }]
-                }}
-            />) : null
+        dailyData
+            ? (
+                <Line
+                    options={optionsLineChart}
+                    data={{
+                        labels: Object.entries(historyCases).map(([key, value]) => { return key }),
+                        datasets: [
+                            {
+                                data: Object.entries(historyCases).map(([key, value]) => { return value }),
+                                label: 'Total',
+                                borderColor: 'rgb(137, 0, 0, 0.8)',
+                                fill: false
+                            },
+                            {
+                                data: Object.entries(historyRecovered).map(([key, value]) => { return value }),
+                                label: 'Recovered',
+                                borderColor: 'rgb(0, 137, 68, 0.8)',
+                                fill: false
+                            },
+                            {
+                                data: Object.entries(historyDeaths).map(([key, value]) => { return value }),
+                                label: 'Deaths',
+                                borderColor: 'rgb(59, 59, 59, 0.8)',
+                                fill: false
+                            }
+                        ]
+                    }}
+                />
+            ) : null
     )
 
     const barChart = (
-        confirmed
+        cases
             ? (<Bar
-                options={{
-                    maintainAspectRatio: false,
-                    legend: { display: false },
-                    title: { display: true, text: `Current state in ${country}` }
-                }}
+                options={optionsBarChart}
                 data={{
-                    labels: ['Infected', 'Recovered', 'Active', 'Deaths'],
+                    labels: ['Total', 'Recovered', 'Active', 'Deaths'],
                     datasets: [
                         {
                             label: 'People',
-                            backgroundColor: ['#ff416c', '#52BE80', '#2980B9', '#7F8C8D'],
-                            data: [confirmed.value, recovered.value, (confirmed.value - (recovered.value + deaths.value)), deaths.value]
+                            backgroundColor: ['rgb(137, 0, 0, 0.8)', 'rgb(0, 137, 68, 0.8)', 'rgb(0, 120, 120, 0.8)', 'rgb(59, 59, 59, 0.8)'],
+                            data: [cases, recovered, active, deaths]
                         }]
                 }}
             />) : null

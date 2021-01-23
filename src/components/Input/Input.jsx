@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 
 // DATA
-import { fetchCountries } from '../../api';
+import { fetchCountriesData } from '../../api';
 
 // MATERIAL UI
 import { makeStyles } from '@material-ui/core/styles';
 import { NativeSelect, FormControl, Grid } from '@material-ui/core';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
     root: {
-        marginTop: 50,
+        margin: '114px auto 50px auto',
         display: 'flex',
         justifyContent: 'center'
     },
@@ -28,7 +28,7 @@ const Input = ({ handleCountryChange }) => {
 
     useEffect(() => {
         const fetchAPI = async () => {
-            setCountries(await fetchCountries());
+            setCountries(await fetchCountriesData());
         }
 
         fetchAPI();
@@ -40,7 +40,7 @@ const Input = ({ handleCountryChange }) => {
                 <FormControl className={classes.form}>
                     <NativeSelect defaultValue="" onChange={(e) => handleCountryChange(e.target.value)}>
                         <option value="" >Global</option>
-                        {countries.map((country, index) => <option key={index} value={country} className={classes.option}>{country}</option>)}
+                        {countries.map((country, index) => <option key={index} value={country.country} className={classes.option}>{country.country}</option>)}
                     </NativeSelect>
                 </FormControl>
             </Grid>

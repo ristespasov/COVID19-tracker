@@ -1,35 +1,33 @@
 import React, { useState, useEffect } from 'react';
 
 // COMPONENTS
-import Cover from '../Cover/Cover';
-import Cards from '../Cards/Cards';
 import Input from '../Input/Input';
+import Cards from '../Cards/Cards';
 import Chart from '../Chart/Chart';
 
 // DATA
 import { fetchData } from '../../api';
 
 const Status = () => {
-    const [{ data, country }, setData] = useState({ data: {}, country: '' });
+    const [{ data, country }, setData] = useState({ data: {}, country: {} });
 
     useEffect(() => {
-        const fetchedData = async () => {
+        const fetchAPI = async () => {
             setData({ data: await fetchData() });
         };
 
-        fetchedData();
+        fetchAPI();
     }, [])
 
     const handleCountryChange = async (country) => {
-        const fetchedData = await fetchData(country);
-        setData({ data: fetchedData, country: country });
+        const fetchAPI = await fetchData(country);
+        setData({ data: fetchAPI, country: country });
     }
 
     return (
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-            <Cover />
-            <Cards data={data} />
             <Input handleCountryChange={handleCountryChange} />
+            <Cards data={data} />
             <Chart data={data} country={country} />
         </div>
     )

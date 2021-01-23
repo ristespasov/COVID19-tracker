@@ -11,7 +11,7 @@ const useStyles = makeStyles(theme => ({
         alignItems: "center",
         height: 165,
         "& *": {
-            color: "#36d4c1"
+            color: "#00b3b3"
         }
     }
 }));
