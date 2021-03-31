@@ -46,7 +46,7 @@ const Chart = ({ data: { cases, recovered, active, deaths }, country }) => {
                 {
                     type: "time",
                     time: {
-                        format: "MM/DD/YY",
+                        parser: "MM/DD/YY",
                         tooltipFormat: "ll",
                     },
                 },
